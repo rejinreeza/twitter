@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twitter</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="user_nav">
+  <% if current_user %>
+    Logged in as <%= current_user.email %>.
+    <%= link_to "Log out", log_out_path %>
+  <% else %>
+    <%= link_to "Sign up", new_user_path %> or
+    <%= link_to "log in", new_session_path %>
+  <% end %>
+</div>
+<h1>The Twitter.com </h1>
+<%# flash.each do |name, msg| %>
+  <%#= content_tag :div, msg, :id => "flash_#{name}" %>
+<%# end %>
+<table>
+	<tr>
+		<th><%=link_to "Home", root_path%></th>
+		<th><%=link_to "Profile", "#"%></th>
+	</tr>
+</table>
+
+<%= yield %>
+
+</body>
+</html>

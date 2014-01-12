@@ -1,0 +1,25 @@
+<% unless current_user.nil? %>
+	<%= link_to 'Tweet', user_path(current_user)%>
+<%end%>
+<table>
+	<tr>
+		<th>User Name</th>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Age</th>
+		<th>City</th>
+		<th>Follow</th>
+	</tr>
+	<% @users.each do |user|%>
+			<tr>
+				<td><%= link_to user.username, profile_user_path(user.id) %></td>
+				<td><%= user.first_name %></td>
+				<td><%= user.last_name %></td>
+				<td><%= user.age %></td>
+				<td><%= user.city %></td>
+				<% unless((user == current_user) || (current_user.nil?)) %>
+					<td><%= check_box_tag "Follow" %></td>
+				<% end %>
+			</tr>
+	<% end%>
+</table>

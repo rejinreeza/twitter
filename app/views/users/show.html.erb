@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+	<%# @friends.each do |fr| %>
+		<%@tweets.each do |tw|%>
+			<tr><td><strong><%= tw.user.username%></strong>(<%=tw.created_at%>)</td><td><%=tw.content%></td></tr>
+		<%end%>
+	<%# end %>
+</table>
+<br/>
+<%#= form_for current_user,  url: {action: "create_tweets"}, method: "post"  do |f| %>
+<%= form_for ([current_user, @tweet]) do |f| %>
+  <%#= f.fields_for :questions do |builder| %>
+	<%#= render 'tweet_form', :f => builder %>
+ <%# end %>
+	<%#= render 'tweet_form' %>
+	  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+  </div>
+
+	<%= f.submit 'tweet'%>
+<%end%>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
