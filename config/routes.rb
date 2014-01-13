@@ -6,7 +6,7 @@ Twitter::Application.routes.draw do
   
   resources :users do
 	member do
-		get "profile"
+		get "profile", "settings"
 	end
 	resources :tweets
   end

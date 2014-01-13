@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :profile, :settings]
 
   # GET /users
   # GET /users.json
@@ -66,7 +66,16 @@ class UsersController < ApplicationController
   end
   
   def profile
+	#@user = User.find(params[:id])
+  end
+  
+  def settings
 	@user = User.find(params[:id])
+	@type = params[:type]
+	respond_to do |format|
+		format.js 
+		format.html
+	end
   end
 
   private
