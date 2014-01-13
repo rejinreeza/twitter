@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
 	@tweets = Tweet.all.order(:created_at => :asc)
+	#@tweets = current_user.followed_user.collect { |f| f.tweets }
+	#@tweets = Tweet.find(current_user)
 	@friends = User.all
 	@tweet = current_user.tweets.new
   end
@@ -31,8 +33,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to home_path, notice: 'User was successfully created.' }
-        format.json { render root_url, status: :created, location: @user }
+        format.html { redirect_to root_url, notice: 'User was successfully created.' }
+        #format.json { render root_url, status: :created, location: @user }
       else
         format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
